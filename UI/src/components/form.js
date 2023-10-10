@@ -113,7 +113,7 @@ fetch('https://localhost:44385/api/sentiment/customer', {
     return (
         <Container>
             {displayform ? 
-            (<Card style={{background:'bisque'}}>
+            (<Card style={{background:'bisque'', fontWeight: "bold"}}>
                 <Card.Header>
                     <cite title="Source Title">We are committed to provide you with the best
                         product experience possible, so we welcome your comments.
