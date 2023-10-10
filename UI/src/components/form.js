@@ -16,7 +16,9 @@ function FeedbackForm() {
     const [fnm_value, setFnmValue] = useState('')
     const [lnm_value, setLnmValue] = useState('')
     const [ph_value, setPhoneValue] = useState('')
-    const [feed_value, setFeedValue] = useState('')
+    const [feed1_value, setFeed1Value] = useState('')
+    const [feed2_value, setFeed2Value] = useState('')
+    const [feed3_value, setFeed3Value] = useState('')
     const [staff_value, setStaffValue] = useState('')
     const [branch_value, setBranchValue] = useState('')
     const [type_value, setTypeValue] = useState('')
@@ -40,7 +42,7 @@ function FeedbackForm() {
             document.getElementById('email_er').style.display = "block";
             setErrorMsg('Invalid Email')
         }
-        else if(feed_value===''){
+        else if(feed1_value===''){
             document.getElementById('feedback_er').style.display = "block";
         }
         else return true;
@@ -86,7 +88,7 @@ fetch('https://localhost:44385/api/sentiment/customer', {
         Phone: ph_value,
         StaffServed: staff_value,
         Branch: branch_value,
-        FeedbackText: feed_value,
+        FeedbackText: feed1_value + " " + feed2_value + " " + feed3_value,
         UserId: Math.random().toString(36).slice(2)
     }),
     headers: {
@@ -117,7 +119,7 @@ fetch('https://localhost:44385/api/sentiment/customer', {
                         product experience possible, so we welcome your comments.
                     </cite>
                 </Card.Header>
-                <Card.Body>
+                <Card.Body style={{padding:'0px'}}>
                     <blockquote className="blockquote mb-0">
                         Please fill out the feedback form 
                     </blockquote>
@@ -215,10 +217,21 @@ fetch('https://localhost:44385/api/sentiment/customer', {
                         <Row>
                             <Col>
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                                    <Form.Label>Please enter your feedback</Form.Label>
-                                    <Form.Control style={{background:'coral'}} as="textarea" maxLength={200} rows={3} placeholder="E.g. Please describe your experience" value={feed_value} onChange={e => setFeedValue(e.target.value)}/>                                </Form.Group>
+                                    <Form.Label>How was your experience with the recent service?</Form.Label>
+                                    <Form.Control style={{background:'coral'}} as="textarea" maxLength={100} rows={3} placeholder="E.g. Please describe your experience" value={feed1_value} onChange={e => setFeed1Value(e.target.value)}/>                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Form.Label>Was the bank official able to resolve your issue?</Form.Label>
+                                    <Form.Control style={{background:'coral'}} as="textarea" maxLength={100} rows={3} placeholder="E.g. Please describe your experience" value={feed2_value} onChange={e => setFeed2Value(e.target.value)}/>                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Form.Label>How likely are you to recommend the product?</Form.Label>
+                                    <Form.Control style={{background:'coral'}} as="textarea" maxLength={100} rows={3} placeholder="E.g. Please describe in 1 or 2 sentences" value={feed3_value} onChange={e => setFeed3Value(e.target.value)}/>                                </Form.Group>
                             </Col>
                         </Row>
+                        
                         <Button style={{background:'crimson'}} className='btn_purp' onClick={e=>formSubmit(e)}>Submit Feedback</Button>
                     </Form>
                 </Container>
