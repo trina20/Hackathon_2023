@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SentimentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="Feedback">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FeedbackType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FeedbackOn" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="StaffServed" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Branch" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FeedbackText" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SentimentScore" Type="float" />
+    <Property Name="Sentiment" Type="nvarchar" MaxLength="50" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Feedback_ToTable">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Feedback">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SentimentModelStoreContainer">
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Feedback_ToTable" Association="Self.FK_Feedback_ToTable">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Feedback" EntitySet="Feedback" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

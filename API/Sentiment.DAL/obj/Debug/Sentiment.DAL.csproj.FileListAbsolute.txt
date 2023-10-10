@@ -1,0 +1,13 @@
+D:\SentimentAPI\Sentiment.DAL\bin\Debug\Sentiment.DAL.dll.config
+D:\SentimentAPI\Sentiment.DAL\bin\Debug\Sentiment.DAL.dll
+D:\SentimentAPI\Sentiment.DAL\bin\Debug\Sentiment.DAL.pdb
+D:\SentimentAPI\Sentiment.DAL\bin\Debug\EntityFramework.dll
+D:\SentimentAPI\Sentiment.DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\SentimentAPI\Sentiment.DAL\bin\Debug\Newtonsoft.Json.dll
+D:\SentimentAPI\Sentiment.DAL\bin\Debug\EntityFramework.xml
+D:\SentimentAPI\Sentiment.DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\SentimentAPI\Sentiment.DAL\bin\Debug\Newtonsoft.Json.xml
+D:\SentimentAPI\Sentiment.DAL\obj\Debug\Sentiment.DAL.csproj.CoreCompileInputs.cache
+D:\SentimentAPI\Sentiment.DAL\obj\Debug\Sentiment.DAL.csproj.CopyComplete
+D:\SentimentAPI\Sentiment.DAL\obj\Debug\Sentiment.DAL.dll
+D:\SentimentAPI\Sentiment.DAL\obj\Debug\Sentiment.DAL.pdb
