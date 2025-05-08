@@ -1,0 +1,21 @@
+trigger assignment_rule_robin on sentiment_Analysis__c (after insert,after update) {
+        for (sentiment_Analysis__c sc:trigger.new){
+        if(sc.Analysis_value__c=='Negative' || sc.Analysis_value__c =='-1'){
+            AssignmentRule AR = new AssignmentRule();
+            AR = [select id from AssignmentRule where SobjectType = 'Case' and Active = true limit 1];
+
+            //Creating the DMLOptions for "Assign using active assignment rules" checkbox
+            Database.DMLOptions dmlOpts = new Database.DMLOptions();
+            dmlOpts.assignmentRuleHeader.assignmentRuleId= AR.id;
+            dmlOpts.EmailHeader.TriggerUserEmail=true;
+            dmlopts.EmailHeader.triggerAutoResponseEmail=true;
+            Case newCase = new Case(Status = 'New') ;
+            //Setting the DMLOption on Case instance
+            newCase.setOptions(dmlOpts);
+            newCase.sentiment_Analysis__c= sc.id;
+            System.debug(dmlOpts.assignmentRuleHeader.assignmentRuleId);
+            insert newCase ;
+        }
+    }
+
+}
